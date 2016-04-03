@@ -22,9 +22,7 @@ public class RayController : MonoBehaviour {
     public void Move(Vector2 velocity) {
         UpdateRayOrigins();
         collInfo.Reset();
-        if (velocity.x != 0) {
             HorizontalCollisions(ref velocity);
-        }
         if (velocity.y != 0) {
             VerticalCollisions(ref velocity);
         }

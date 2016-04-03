@@ -1,26 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class BackgroundMove : MonoBehaviour {
-    private float bSpeed;
-    BoxCollider2D bg;
-    void Start() {
+    public static float bSpeed = 0;
+    private BoxCollider2D bg;
+    private void Start() {
         bg = GetComponent<BoxCollider2D>();
     }
-    public void Update() {
-        if (GameManager.move == 1) {
-            switch (GameManager.stageNumber) {
-                case 0:
-                    bSpeed = -5f;
-                    break;
-                case 1:
-                    bSpeed = -6f;
-                    break;
-                case 2:
-                    bSpeed = -7f;
-                    break;
-            }
-            bg.transform.Translate((Vector3.left * Time.deltaTime) * bSpeed);
-        }
+    private void Update() {
+        if (GameManager.move == true) 
+            bSpeed = GameManager.stageNumber < 1 ? -5f : GameManager.stageNumber < 2 ? -6f : -7f;
+        bg.transform.Translate((Vector3.left * Time.deltaTime) * bSpeed);
+        
     }
 }

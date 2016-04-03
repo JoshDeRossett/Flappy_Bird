@@ -1,26 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class PipeMove : MonoBehaviour {
-    private float pSpeed;
-    BoxCollider2D pipes;
-    void Start() {
+    public static float pSpeed = 0;
+    private BoxCollider2D pipes;
+    private void Start() {
         pipes = GetComponent<BoxCollider2D>();
     }
-    public void Update() {
-        if (GameManager.move == 1) {
-            switch (GameManager.stageNumber) {
-                case 0:
-                    pSpeed = 5f;
-                    break;
-                case 1:
-                    pSpeed = 6f;
-                    break;
-                case 2:
-                    pSpeed = 7f;
-                    break;
-            }
-            pipes.transform.Translate((Vector3.left * Time.deltaTime) * pSpeed);
-        }
+    private void Update() {
+        if (GameManager.move == true)
+            pSpeed = GameManager.stageNumber < 1 ? 5f : GameManager.stageNumber < 2 ? 6f : 7f;
+        pipes.transform.Translate((Vector3.left * Time.deltaTime) * pSpeed);
     }
 }
